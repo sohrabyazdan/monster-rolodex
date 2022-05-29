@@ -27,19 +27,28 @@ class App extends Component {
   }
 
   onChangeHandler = (event) => {
-    this.setState({
-      searchField: event.target.value,
-    });
+    this.setState(
+      {
+        searchField: event.target.value,
+      },
+      () => console.log(this.state)
+    );
   };
 
   render() {
+    const filteredMonsters = this.state.monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+    );
+    if (this.state.monsters.length === 0) {
+      return <div className="loading">Loading</div>;
+    }
     return (
       <Fragment>
         <header>
           <h1>Monster Rolodex</h1>
           <SearchBox onchange={this.onChangeHandler} />
         </header>
-        <CardList monsters={this.state.monsters} />
+        <CardList monsters={filteredMonsters} />
       </Fragment>
     );
   }
