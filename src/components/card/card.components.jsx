@@ -1,22 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./card.styles.scss";
+import { CartItem, H3Style } from "./card.style";
 
 const Card = ({ monster }) => {
   const { id, name, email } = monster;
   return (
-    <div className="card-item">
+    <CartItem>
       <img src={`https://robohash.org/${id}?set=set2`} />
-      <h3>{name}</h3>
+      <H3Style>{name}</H3Style>
       <p>{email}</p>
-    </div>
+    </CartItem>
   );
 };
 
 export default Card;
 
 Card.propTypes = {
-  monster: PropTypes.any,
+  monster: PropTypes.object,
   id: PropTypes.string,
   name: PropTypes.string,
 };

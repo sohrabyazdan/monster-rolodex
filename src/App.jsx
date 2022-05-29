@@ -1,8 +1,14 @@
 import React, { Component, Fragment } from "react";
-import "./App.scss";
+import {
+  HeaderStyle,
+  H1Style,
+  Loading,
+  MainStyle,
+  ContainerStyle,
+} from "./App.styles";
 
 import CardList from "./components/card-list/card-list.components";
-import SearchBox from "./components/search-box/search.component";
+import SearchBox from "./components/search-box/search-box.component";
 
 class App extends Component {
   constructor() {
@@ -27,28 +33,33 @@ class App extends Component {
   }
 
   onChangeHandler = (event) => {
-    this.setState(
-      {
-        searchField: event.target.value,
-      },
-      () => console.log(this.state)
-    );
+    this.setState({
+      searchField: event.target.value,
+    });
   };
 
   render() {
-    const filteredMonsters = this.state.monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase())
     );
     if (this.state.monsters.length === 0) {
-      return <div className="loading">Loading</div>;
+      return <Loading>Loading</Loading>;
     }
     return (
       <Fragment>
-        <header>
-          <h1>Monster Rolodex</h1>
-          <SearchBox onchange={this.onChangeHandler} />
-        </header>
-        <CardList monsters={filteredMonsters} />
+        <HeaderStyle>
+          <H1Style>Monster Rolodex</H1Style>
+          <SearchBox
+            onchange={this.onChangeHandler}
+            placeholder="Enter monster name"
+          />
+        </HeaderStyle>
+        <MainStyle>
+          <ContainerStyle>
+            <CardList monsters={filteredMonsters} />
+          </ContainerStyle>
+        </MainStyle>
       </Fragment>
     );
   }
