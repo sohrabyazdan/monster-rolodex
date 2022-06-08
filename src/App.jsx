@@ -35,8 +35,6 @@ const App = () => {
     monster.name.includes(searchField)
   );
 
-  console.log(filteredMonsters.length);
-
   return (
     <Fragment>
       <HeaderStyle>
