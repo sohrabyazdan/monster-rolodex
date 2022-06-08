@@ -32,7 +32,7 @@ const App = () => {
   };
 
   const filteredMonsters = monsters.filter((monster) =>
-    monster.name.includes(searchField)
+    monster.name.toLowerCase().includes(searchField.toLowerCase())
   );
 
   return (
