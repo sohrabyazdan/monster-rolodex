@@ -5,6 +5,7 @@ import { GridStyle } from "./card-list.style";
 import Card from "../card/card.components";
 
 export const CardList = ({ monsters }) => {
+  console.log(monsters);
   return (
     <GridStyle>
       {monsters.map((monster, index) => {

@@ -11,6 +11,7 @@ export const H1Style = styled.h1`
   font-family: "Bigelow Rules", cursive;
   font-size: 5rem;
   color: #333;
+  height: 90px;
 `;
 
 export const Loading = styled.div`

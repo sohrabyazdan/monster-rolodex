@@ -2,11 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { CartItem, H3Style } from "./card.style";
 
-const Card = ({ monster }) => {
-  const { id, name, email } = monster;
+const Card = ({ monster: { id, name, email } }) => {
   return (
     <CartItem>
-      <img src={`https://robohash.org/${id}?set=set2`} />
+      <img
+        src={`https://robohash.org/${id}?set=set2`}
+        width="200"
+        height="200"
+      />
       <H3Style>{name}</H3Style>
       <p>{email}</p>
     </CartItem>
