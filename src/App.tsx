@@ -1,29 +1,29 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, ChangeEvent } from "react";
 import { HeaderStyle, H1Style, MainStyle, ContainerStyle } from "./App.styles";
 
 import CardList from "./components/card-list/card-list.components";
 import SearchBox from "./components/search-box/search-box.component";
+import { getData } from "./utils/data.utils";
+import { Monster } from "./utils/types";
 
 const App = () => {
-  const [monsters, setMonsters] = useState([]);
+  const [monsters, setMonsters] = useState<Monster[]>([]);
+  const monstersURL = "https://jsonplaceholder.typicode.com/users";
   const [searchField, setSearchField] = useState("");
   const [title, setTitle] = useState("Monster Rolodex");
 
   useEffect(() => {
     try {
       (async () => {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        const jsonData = await response.json();
-        setMonsters(jsonData);
+        const data = await getData<Monster[]>(monstersURL);
+        setMonsters(data);
       })();
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-  const onChangeHandler = (event) => {
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
     const searchField = event.target.value;
     setSearchField(searchField);
     searchField.length !== 0
@@ -40,8 +40,10 @@ const App = () => {
       <HeaderStyle>
         <H1Style>{title}</H1Style>
         <SearchBox
-          onchange={onChangeHandler}
+          type="search"
+          className="input-search"
           placeholder="Enter monster name"
+          onChangeHandler={onChangeHandler}
         />
       </HeaderStyle>
       <MainStyle>
