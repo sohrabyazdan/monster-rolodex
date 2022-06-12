@@ -1,4 +1,4 @@
-#Monster Rolodex
+# Monster Rolodex
 This project created based on react (CRA). there is another version of this app based on TypeScript, find it in ts_version branch.
 
 ### Demo link
