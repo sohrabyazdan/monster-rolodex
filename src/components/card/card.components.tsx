@@ -1,8 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { CartItem, H3Style } from "./card.style";
 
-const Card = ({ monster: { id, name, email } }) => {
+import { CartItem, H3Style } from "./card.style";
+import { Monster } from "../../utils/types";
+
+type CardProps = {
+  monster: Monster;
+};
+
+const Card = ({ monster }: CardProps) => {
+  const { id, name, email } = monster;
   return (
     <CartItem>
       <img
@@ -17,9 +23,3 @@ const Card = ({ monster: { id, name, email } }) => {
 };
 
 export default Card;
-
-Card.propTypes = {
-  monster: PropTypes.object,
-  id: PropTypes.string,
-  name: PropTypes.string,
-};

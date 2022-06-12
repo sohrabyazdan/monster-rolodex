@@ -1,10 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { GridStyle } from "./card-list.style";
 
 import Card from "../card/card.components";
+import { Monster } from "../../utils/types";
 
-export const CardList = ({ monsters }) => {
+type CardListProps = {
+  monsters: Monster[];
+};
+
+const CardList = ({ monsters }: CardListProps) => {
   return (
     <GridStyle>
       {monsters.map((monster, index) => {
@@ -14,7 +18,3 @@ export const CardList = ({ monsters }) => {
   );
 };
 export default CardList;
-
-CardList.propTypes = {
-  monsters: PropTypes.any,
-};
